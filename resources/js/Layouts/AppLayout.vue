@@ -63,12 +63,14 @@
 
                                         <div class="border-t border-gray-100"></div>
 
-                                        <!-- Authentication -->
+                                        <!-- Authentication traditional-->
                                         <form @submit.prevent="logout">
                                             <jet-dropdown-link as="button">
                                                 Log Out
                                             </jet-dropdown-link>
                                         </form>
+
+                                        <!-- can use:  <jet-dropdown-link href="/logout" method="post">Log out</jet-dropdown-link> -->
                                     </template>
                                 </jet-dropdown>
                             </div>

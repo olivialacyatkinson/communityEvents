@@ -14,27 +14,35 @@
 
 
 
-            <jet-button type="button" @click.native="redirect()">
+            <jet-button type="button" @click="redirect()">
                 Create Event
             </jet-button>
+
+            <ul>
+                <li v-for="event in events" :key="event.id" v-text="event.name"></li>
+            </ul>
         </div>
     </app-layout>
 </template>
 
 <script>
 import { defineComponent } from 'vue'
-import AppLayout from '@/Layouts/AppLayout.vue'
 import JetButton from '@/Jetstream/Button.vue'
 
 export default defineComponent({
     components: {
-        AppLayout,
         JetButton,
+    },
+    props: {
+        events: {
+            required: false,
+            type: Array,
+        }
     },
     methods: {
         redirect() {
             this.$inertia.visit(route('create'), { method: 'get' });
-        }
+        },
     }
 })
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <app-layout title="CreateEvents">
+    <app-layout title="Create an Event">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Create a new Event

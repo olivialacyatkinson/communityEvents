@@ -7,19 +7,32 @@
             </h2>
         </template>
 
-        <welcome />
+        <div>
+        <!-- dashboard page content-->
+            welcome to your dashboard page 
+
+            <jet-button type="button" @click="redirect()">
+                Create Event
+            </jet-button>
+        </div>
     </app-layout>
 </template>
 
-<script>
-    import { defineComponent } from 'vue'
-    import AppLayout from '@/Layouts/AppLayout.vue'
-    import Welcome from '@/Jetstream/Welcome.vue'
 
-    export default defineComponent({
-        components: {
-            AppLayout,
-            Welcome,
+<script>
+import { defineComponent } from 'vue'
+import AppLayout from '@/Layouts/AppLayout.vue'
+import JetButton from '@/Jetstream/Button.vue'
+
+export default defineComponent({
+    components: {
+        AppLayout,
+        JetButton,
+    },
+    methods: {
+        redirect() {
+            this.$inertia.visit(route('create'), { method: 'get' });
         },
-    })
+    }
+})
 </script>
