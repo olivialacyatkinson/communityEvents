@@ -44,7 +44,7 @@ class EventFactory extends Factory
             'country' => $this->faker->country,
             'phone' => $this->faker->phoneNumber,
             'is_online' => $this->faker->boolean,
-            'photo_url' => $this->faker->imageUrl(200, 200, 'cats')
+            'photo_url' => $this->faker->image('public/images', 200, 200, 'cats')
         ];
     }
 }

@@ -25,10 +25,6 @@ Route::get('/', function () {
     ]);
 });
 
-// Route::get('/createevent', function () {
-//     return Inertia::render('CreateEvent');
-// });
-
 // nav pages
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard', [
@@ -58,7 +54,32 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/events', function () {
     // ]);
 })->name('events');
 
+Route::middleware(['auth:sanctum', 'verified'])->post('/events', function () {
+    // validate the request, also data get returned to assign to attributes
+    $attrs = Request::validate([
+        'title' => 'required',
+        'description' => 'required',
+        'photo_url' => 'required',
+        'start_date' => 'required',
+        'start_time' => 'required',
+        'building_number' => 'required',
+        'building_street_name' => 'required',
+        'building_name'  => 'required',
+        'postal_code'  => 'required',
+        'city' => 'required',
+        'county'  => 'required',
+        'country'  => 'required',
+        'phone' => 'required',
+        'is_online'  => 'required',
+    ]);
+    // create event is validation has uscceeded
+    Event::create($attrs);
+    // after ajax requext from inertia, return redirect
+    return redirect('/events');
+});
+
+
 // pages
-Route::middleware(['auth:sanctum', 'verified'])->get('/create', function () {
-    return Inertia::render('CreateEvent');
+Route::middleware(['auth:sanctum', 'verified'])->get('/events/create', function () {
+    return Inertia::render('Events/CreateEvent');
 })->name('create');

@@ -31,6 +31,10 @@
                     <div>
                         Event City: {{event.city}}
                     </div>
+                    <!-- need to fix photo problem -->
+                    <div>
+                        Event image: <img :src="event.photo_url">
+                    </div>
                 </li>
             </ul>
         </div>
