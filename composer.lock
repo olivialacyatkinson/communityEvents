@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "12b853cdbf2ed64e42d24d1dd0755b89",
+    "content-hash": "f1b38fb88c977cde14c3f391755da854",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -106,6 +106,56 @@
             "description": "BaconQrCode is a QR code generator for PHP.",
             "homepage": "https://github.com/Bacon/BaconQrCode",
             "time": "2021-06-18T13:26:35+00:00"
+        },
+        {
+            "name": "bizhub/inertia-query-filter",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bizhub/inertia-query-filter.git",
+                "reference": "25c5ad1cb483cd3efeb2f448e2768af145f048d8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bizhub/inertia-query-filter/zipball/25c5ad1cb483cd3efeb2f448e2768af145f048d8",
+                "reference": "25c5ad1cb483cd3efeb2f448e2768af145f048d8",
+                "shasum": ""
+            },
+            "require": {
+                "inertiajs/inertia-laravel": "^0.3.3|^0.4.0"
+            },
+            "require-dev": {
+                "nunomaduro/collision": "^5.3",
+                "orchestra/testbench": "^6.0",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Bizhub\\QueryFilter\\QueryFilterServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Bizhub\\QueryFilter\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lex van der Woude",
+                    "email": "lex@bizhub.co.nz",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel + Inertiajs query filters",
+            "homepage": "https://github.com/bizhub/inertia-query-filter",
+            "time": "2021-10-18T04:39:35+00:00"
         },
         {
             "name": "brick/math",

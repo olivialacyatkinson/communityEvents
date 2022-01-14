@@ -173,7 +173,7 @@
             </header>
 
             <!-- Page Content -->
-            <main>
+            <main class="max-w-screen-lg mx-auto">
                 <slot></slot>
             </main>
         </div>
