@@ -2,15 +2,15 @@
     <app-layout title="Create an Event">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Create a new Event
+                Update Event
             </h2>
         </template>
         <div>
             this is the events page
 
-            form to create event to store in db
+            form to edit event to store in db
 
-            <form @submit.prevent="submit" class="max-w-md mx-auto mt-7">
+            <form @submit.prevent="update(event)" class="max-w-md mx-auto mt-7">
                 <div class="mt-6">
                     <label for="title" class="block mb-2 uppercase font-bold text-xs text-gray-700">
                         Title
@@ -96,23 +96,6 @@
                         {{errors.start_time}}
                     </div>
                 </div>
-
-                <!-- change back to text -->
-                <!-- <div class="mt-6">
-                    <label for="title" class="block mb-2 uppercase font-bold text-xs text-gray-700">
-                        Event Length
-                    </label>
-
-                    <input
-                        v-model="form.event_length"
-                        class="border border-gray-400 p-2 w-full"
-                        type="datetime-local"
-                        name="event_length"
-                        id="event_length"
-                    >
-                </div> -->
-
-
                 <div class="mt-6">
                     <label for="title" class="block mb-2 uppercase font-bold text-xs text-gray-700">
                         Building Number
@@ -234,7 +217,7 @@
 
                 <div class="mt-6">
                     <button type="submit" class="bg-gray-800 text-white rounded py-2 px-4 hover:bg-gray-500">
-                       Submit
+                       Update
                     </button>
                 </div>
             </form>
@@ -242,54 +225,55 @@
     </app-layout>
 </template>
 
+
+
 <script>
-    import { defineComponent } from 'vue';
-    import { useForm } from '@inertiajs/inertia-vue3';
-    import AppLayout from '@/Layouts/AppLayout.vue';
+import { defineComponent } from 'vue';
+import { useForm } from '@inertiajs/inertia-vue3';
+import AppLayout from '@/Layouts/AppLayout.vue';
 
-    export default defineComponent({
-        components: {
-            AppLayout,
+export default defineComponent({
+    components: {
+        AppLayout,
+    },
+    props: {
+        errors: {
+            required: false,
+            type: Object,
         },
-        props: {
-            errors: {
-                required: true,
-                type: Object,
-            }
+        event: {
+            required: true,
+            type: Object,
         },
-        data() {
-            return {
-                form: useForm({
-                    title: '',
-                    description: '',
-                    photo_url: null,
-                    start_date: '',
-                    start_time: '',
-                    building_number: null,
-                    building_street_name: '',
-                    building_name: '',
-                    postal_code: '',
-                    city: '',
-                    county: '',
-                    country: '',
-                    phone: null,
-                    is_online: false,
-
-                }),
-            }
-        },
-        methods: {
-            submit() {
-                this.form.post('/events')
-            },
-            onFileSelected(e) {
-                console.log(e.target.files[0]);
-                this.form.photo_url = e.target.files[0]; 
-            },
+    },
+    data() {
+        return {
+            form: useForm({
+                title: this.event.title,
+                description: this.event.description,
+                photo_url: '',
+                start_date: this.event.start_date,
+                start_time: this.event.start_time,
+                building_number: this.event.building_number,
+                building_street_name: this.event.building_street_name,
+                building_name: this.event.building_name,
+                postal_code: this.event.postal_code,
+                city: this.event.city,
+                county: this.event.county,
+                country: this.event.country,
+                phone: this.event.phone,
+                is_online: this.event.is_online,
+            }),
         }
-    })
+    },
+    methods: {
+        update(event) {
+            this.form.put('events.update', event.id)
+        },
+        onFileSelected(e) {
+            console.log(e.target.files[0]);
+            this.form.photo_url = e.target.files[0]; 
+        },
+    }
+})
 </script>
-
-<style>
-
-</style>

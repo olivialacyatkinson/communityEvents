@@ -31,22 +31,23 @@
                     </div>
                     <div>
                         <div class="-mt-px flex divide-x divide-gray-200">
-                        <div class="w-0 flex-1 flex">
-                            <!-- <a :href="`mailto:${person.email}`" class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500">
-                            <MailIcon class="w-5 h-5 text-gray-400" aria-hidden="true" />
-                            <span class="ml-3">Email</span>
-                            </a> -->
-                            {{event.start_date}}
-                            {{event.start_time}}
-                        </div>
-                        <div class="-ml-px w-0 flex-1 flex">
-                            <!-- <a :href="`tel:${person.telephone}`" class="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500">
-                            <PhoneIcon class="w-5 h-5 text-gray-400" aria-hidden="true" />
-                            <span class="ml-3">Call</span>
-                            </a> -->
-                            <Link :href="'/events/' + event.id + 'edit'" class="" >Edit</Link> 
-                            <!-- link  to edit the event future ref -->
-                        </div>
+                            <div class="w-0 flex-1 flex">
+                                <!-- <a :href="`mailto:${person.email}`" class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500">
+                                <MailIcon class="w-5 h-5 text-gray-400" aria-hidden="true" />
+                                <span class="ml-3">Email</span>
+                                </a> -->
+                                {{event.start_date}}
+                                {{event.start_time}}
+                            </div>
+                            <div class="-ml-px w-0 flex-1 flex">
+                                <!-- <a :href="`tel:${person.telephone}`" class="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500">
+                                <PhoneIcon class="w-5 h-5 text-gray-400" aria-hidden="true" />
+                                <span class="ml-3">Call</span>
+                                </a> -->
+                                <Link :href="route('events.edit', event.id)" class="">Edit</Link> 
+                                <!-- link  to edit the event future ref -->
+                                <!-- <Link :href="route('events.destroy', event.id)" class="">Delete</Link>  -->
+                            </div>
                         </div>
                     </div>
                 </li>
@@ -76,9 +77,9 @@ export default defineComponent({
     },
     props: {
         events: {
-            required: false,
+            required: true,
             type: Array,
-        }
+        },
     },
     methods: {
         redirect() {
