@@ -268,7 +268,9 @@ export default defineComponent({
     },
     methods: {
         update(event) {
-            this.form.put('events.update', event.id)
+            this.form.put(route('events.update',  event.id),{
+                resetOnSuccess: false
+            })
         },
         onFileSelected(e) {
             console.log(e.target.files[0]);
