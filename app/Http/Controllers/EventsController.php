@@ -8,10 +8,24 @@ use Illuminate\Http\Request;
 
 class EventsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         return Inertia::Render('Events', [
-            'events' => Event::all()
+            // 'events' => Event::all()
+            'events' => Event::query()
+                ->when($request->input('searchTitle'), function($query, $searchTitle) {
+                    $query->where('title', 'like', "%{$searchTitle}%");
+                })
+                ->when($request->input('searchCity'), function($query, $searchCity) {
+                    $query->where('city', 'like', "%{$searchCity}%");
+                })
+                ->limit(20)
+                ->get(),
+
+            'filters' => $request->only([
+                'searchCity',
+                'searchTitle'
+            ])
         ]);
     }
 

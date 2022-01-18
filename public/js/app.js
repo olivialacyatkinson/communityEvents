@@ -1460,12 +1460,42 @@ __webpack_require__.r(__webpack_exports__);
     events: {
       required: true,
       type: Object
+    },
+    filters: {
+      required: true,
+      type: Object
     }
+  },
+  data: function data() {
+    return {
+      searchTitle: (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(this.filters.searchTitle),
+      searchCity: (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(this.filters.searchCity)
+    };
   },
   methods: {
     redirect: function redirect() {
       this.$inertia.visit(route('events.create'), {
         method: 'get'
+      });
+    }
+  },
+  watch: {
+    searchTitle: function searchTitle(value) {
+      console.log('changed ' + value);
+      this.$inertia.get('events', {
+        searchTitle: value
+      }, {
+        preserveState: true,
+        replace: true
+      });
+    },
+    searchCity: function searchCity(value) {
+      console.log('changed ' + value);
+      this.$inertia.get('events', {
+        searchCity: value
+      }, {
+        preserveState: true,
+        replace: true
       });
     }
   }
@@ -5341,7 +5371,23 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         _: 1
         /* STABLE */
 
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.events, function (event) {
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+        type: "text",
+        placeholder: "Search by Title",
+        "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+          return _ctx.searchTitle = $event;
+        })
+      }, null, 512
+      /* NEED_PATCH */
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.searchTitle]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+        type: "text",
+        placeholder: "Search by city",
+        "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+          return _ctx.searchCity = $event;
+        })
+      }, null, 512
+      /* NEED_PATCH */
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.searchCity]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.events, function (event) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
           key: event.id,
           "class": "flex space-x-4 grid grid-cols-2"
