@@ -6,13 +6,14 @@
             </h2>
         </template>
 
-        <div>
+        <div class="pt-12">
         <!-- dashboard page content-->
-            welcome to your dashboard page 
-
-            <jet-button type="button" @click="redirect()">
-                Create Event
-            </jet-button>
+            <div class="flex justify-end pb-12">
+                <jet-button type="button" @click="redirect()">
+                    Create Event
+                </jet-button>
+            </div>
+          
 
             <ul role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 <li v-for="event in events.data" :key="event.id" class="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200">
@@ -26,6 +27,7 @@
                     <div>
                         <div class="-mt-px flex divide-x divide-gray-200">
                             <div class="w-0 flex-1 flex">
+                                <!-- can use moemnt to format -->
                                 {{event.start_date}}
                                 {{event.start_time}}
                             </div>
@@ -39,7 +41,7 @@
             </ul>
 
             <!-- pagination -->
-            <div>
+            <div class="flex justify-center py-12">
                 <Pagination :links="events.links"/>
             </div>
         </div>

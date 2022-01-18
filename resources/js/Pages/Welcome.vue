@@ -2,27 +2,29 @@
 <!-- this page is the page before you sign in -->
     <Head title="Welcome" />
 
-    <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
-        <div v-if="canLogin" class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+    <div class="flex flex-wrap justify-center items-center min-h-screen bg-neutral-50">
+        <div class="">
+            <p class="text-lg text-teal-600">Create new events for <span class="text-2xl font-bold text-teal-700">Your Community</span>.</p>
+        </div>
+
+        <div v-if="canLogin" class="px-6 py-4">
             <!-- if user session active, it shows dashboard button -->
             <Link v-if="$page.props.user" :href="route('dashboard')" class="text-sm text-gray-700 underline">
                 Dashboard
             </Link>
 
             <template v-else>
-                <Link :href="route('login')" class="text-sm text-gray-700 underline">
+                <Link :href="route('login')" class="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-cyan-700 hover:bg-cyan-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-700">
                     Log in
                 </Link>
 
-                <Link v-if="canRegister" :href="route('register')" class="ml-4 text-sm text-gray-700 underline">
+                <Link v-if="canRegister" :href="route('register')" class="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-cyan-700 hover:bg-cyan-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-700">
                     Register
                 </Link>
             </template>
         </div>
 
-        <div class="">
-            welcome to the login page
-        </div>
+        
     </div>
 </template>
 
