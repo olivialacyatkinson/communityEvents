@@ -46,3 +46,4 @@ Route::middleware(['auth:sanctum', 'verified'])->post('/events', [EventsControll
 Route::middleware(['auth:sanctum', 'verified'])->get('/events/create', [EventsController::class, 'create'] )->name('events.create');
 Route::middleware(['auth:sanctum', 'verified'])->get('/events/{event}/edit', [EventsController::class, 'edit'] )->name('events.edit');
 Route::middleware(['auth:sanctum', 'verified'])->put('/events/{event}', [EventsController::class, 'update'] )->name('events.update');
+Route::middleware(['auth:sanctum', 'verified'])->get('/events/{event}', [EventsController::class, 'destroy'] )->name('events.destroy');

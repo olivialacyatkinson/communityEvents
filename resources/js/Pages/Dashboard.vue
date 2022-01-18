@@ -31,7 +31,7 @@
                             </div>
                             <div class="-ml-px w-0 flex-1 flex">
                                 <Link :href="route('events.edit', event.id)" class="">Edit</Link> 
-                                <!-- <Link :href="route('events.destroy', event.id)" class="">Delete</Link>  -->
+                                <Link :href="route('events.destroy', event.id)" class="">Delete</Link> 
                             </div>
                         </div>
                     </div>

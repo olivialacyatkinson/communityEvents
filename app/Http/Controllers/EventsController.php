@@ -104,6 +104,12 @@ class EventsController extends Controller
             'is_online' => $request->input('is_online'),
         ]);
         
-        return redirect('/events');
+        return redirect('/dashboard');
+    }
+
+    public function destroy(Event $event)
+    {
+        $event->delete();
+        return redirect('/dashboard');
     }
 }
