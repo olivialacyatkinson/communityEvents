@@ -16,13 +16,6 @@
                 Create Event
             </jet-button>
 
-            <!-- <input
-                type="text"
-                placeholder="Search Event City..."
-                class="rounded-md border-2 border-gray-200"
-                v-model="search"
-            > -->
-
             <ul>
                 <li v-for="event in events" :key="event.id" class="flex space-x-4 grid grid-cols-2">
                     <div>
@@ -42,7 +35,7 @@
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
 import JetButton from '@/Jetstream/Button.vue'
 import AppLayout from '@/Layouts/AppLayout.vue'
 
@@ -56,30 +49,12 @@ export default defineComponent({
             required: true,
             type: Object,
         },
-        // filters: {
-        //     required: false,
-        //     type: Object
-        // }
     },
-    // data() {
-    //     return {
-    //         search: ref('')
-    //     }
-    // },
     methods: {
         redirect() {
-            this.$inertia.visit(route('create'), { method: 'get' });
+            this.$inertia.visit(route('events.create'), { method: 'get' });
         },
     },
-    // watch: {
-    //     search(value) {
-    //         console.log('changed ' + value);
-    //         this.$inertia.get('/events', { search: value }, {
-    //             preserveState: true,
-    //             // replace: true
-    //         });
-    //     }
-    // }
 })
 </script>
 
