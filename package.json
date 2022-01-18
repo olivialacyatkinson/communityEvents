@@ -26,6 +26,7 @@
         "vue-loader": "^16.1.2"
     },
     "dependencies": {
-        "doctrine-dbal": "^0.1.2"
+        "doctrine-dbal": "^0.1.2",
+        "locutus": "^2.0.15"
     }
 }
