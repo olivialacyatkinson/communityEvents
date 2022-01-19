@@ -5,20 +5,18 @@
                 Your events
             </h2>
         </template>
-        <div>
-            this is the events page
-
-            - event map
-            - event add button -> redirects to new route to create event
-            - filtering
-
-            <jet-button type="button" @click="redirect()">
-                Create Event
-            </jet-button>
-
-            <input type="text" placeholder="Search by Title" v-model="searchTitle">
-            <input type="text" placeholder="Search by city" v-model="searchCity">
-
+        <div class="pt-12">
+            <div class="flex justify-end">
+                <jet-button type="button" @click="redirect()">
+                    Create Event
+                </jet-button>
+            </div>
+            
+            <div class="space-x-4 my-12">
+                <input class="rounded-md" type="text" placeholder="Search by Title" v-model="searchTitle">
+                <input class="rounded-md" type="text" placeholder="Search by City" v-model="searchCity">
+            </div>
+          
             <ul>
                 <li v-for="event in events" :key="event.id" class="flex space-x-4 grid grid-cols-2">
                     <div>

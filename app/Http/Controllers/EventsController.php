@@ -54,10 +54,12 @@ class EventsController extends Controller
             'is_online' => [],
         ]);
 
+        $request->file('photo_url')->store('images', 'public');
+
         Event::create([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
-            'photo_url' => $request->file('photo_url') ? $request->file('photo_url')->store('images', 'public') : null,
+            'photo_url' =>  $request->file('photo_url')->hashName(),
             'start_date' => $request->input('start_date'),
             'start_time' => $request->input('start_time'),
             'building_number' => $request->input('building_number'),
