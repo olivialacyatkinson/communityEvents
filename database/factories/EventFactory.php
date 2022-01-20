@@ -24,27 +24,22 @@ class EventFactory extends Factory
     public function definition()
     {
         $days = rand(1, 354);
-        $hours = rand(0, 4);
 
         return [
             'title' => $this->faker->word,
             'description' => $this->faker->sentence,
-            'start_date' => Carbon::now()->subDays($days),
-            'start_time' => $this->faker->dateTimeBetween(
-                \Carbon\Carbon::now()->startOfDay(),
-                \Carbon\Carbon::now()->endOfDay()
-            ),
-            'event_length' => Carbon::now()->hour($hours),
+            'start_date_time' => Carbon::now()->subDays($days),
             'building_number' => $this->faker->buildingNumber,
-            'building_street_name' => $this->faker->streetName,
+            'street' => $this->faker->streetName,
             'building_name' => $this->faker->streetSuffix,
             'city' => $this->faker->city,
             'county' => $this->faker->state,
             'postal_code' => $this->faker->postcode,
             'country' => $this->faker->country,
             'phone' => $this->faker->phoneNumber,
+            'email'=> $this->faker->email,
             'is_online' => $this->faker->boolean,
-            'photo_url' => $this->faker->image('public/images', 200, 200, 'cats')
+            'photo' => $this->faker->image('public/images', 200, 200, 'cats')
         ];
     }
 }

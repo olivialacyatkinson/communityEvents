@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EventsController;
+use App\Http\Controllers\GoogleController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -33,10 +34,13 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
             //passing in only selective data
             'id' => $event->id,
             'title' => $event->title,
-            'photo_url' => $event->photo_url,
+            'photo' => $event->photo,
             'description' => $event->description,
-            'start_date' => $event->start_date,
-            'start_time' => $event->start_time,
+            'start_date_time' => $event->start_date_time,
+            'building_number' => $event->building_number,
+            'street' => $event->street,
+            'postal_code' => $event->postal_code,
+            'city' => $event->city,
         ])
     ]);
 })->name('dashboard');

@@ -40,36 +40,36 @@ class EventsController extends Controller
         $request->validate([
             'title' => ['required'],
             'description' => ['required'],
-            'photo_url' => ['nullable', 'image'],
-            'start_date' => ['required'],
-            'start_time' => ['required'],
+            'photo' => ['required', 'image'],
+            'start_date_time' => ['required'],
             'building_number' => ['nullable'],
-            'building_street_name' => ['nullable'],
+            'street' => ['nullable'],
             'building_name' => ['nullable'],
             'postal_code' => ['nullable'],
             'city' => ['nullable'],
             'county' => ['nullable'],
             'country' => ['nullable'],
             'phone' => ['nullable'],
+            'email'=> ['required'],
             'is_online' => [],
         ]);
 
-        $request->file('photo_url')->store('images', 'public');
+        $request->file('photo')->store('images', 'public');
 
         Event::create([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
-            'photo_url' =>  $request->file('photo_url')->hashName(),
-            'start_date' => $request->input('start_date'),
-            'start_time' => $request->input('start_time'),
+            'photo' =>  $request->file('photo')->hashName(),
+            'start_date_time' => $request->input('start_date_time'),
             'building_number' => $request->input('building_number'),
-            'building_street_name' => $request->input('building_street_name'),
+            'street' => $request->input('street'),
             'building_name' => $request->input('building_name'),
             'postal_code' => $request->input('postal_code'),
             'city' => $request->input('city'),
             'county' => $request->input('county'),
             'country' => $request->input('country'),
             'phone' => $request->input('phone'),
+            'email' => $request->input('email'),
             'is_online' => $request->input('is_online'),
         ]);
         
@@ -89,34 +89,34 @@ class EventsController extends Controller
         $request->validate([
             'title' => ['required'],
             'description' => ['required'],
-            'photo_url' => ['nullable', 'image'],
-            'start_date' => ['required'],
-            'start_time' => ['required'],
+            'photo' => ['required', 'image'],
+            'start_date_time' => ['required'],
             'building_number' => ['nullable'],
-            'building_street_name' => ['nullable'],
+            'street' => ['nullable'],
             'building_name' => ['nullable'],
             'postal_code' => ['nullable'],
             'city' => ['nullable'],
             'county' => ['nullable'],
             'country' => ['nullable'],
             'phone' => ['nullable'],
+            'email' => ['required'],
             'is_online' => [],
         ]);
 
         $event->update([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
-            'photo_url' => $request->file('photo_url') ? $request->file('photo_url')->store('images', 'public') : $event->photo_url,
-            'start_date' => $request->input('start_date'),
-            'start_time' => $request->input('start_time'),
+            'photo' =>  $request->file('photo')->hashName(),
+            'start_date_time' => $request->input('start_date_time'),
             'building_number' => $request->input('building_number'),
-            'building_street_name' => $request->input('building_street_name'),
+            'street' => $request->input('street'),
             'building_name' => $request->input('building_name'),
             'postal_code' => $request->input('postal_code'),
             'city' => $request->input('city'),
             'county' => $request->input('county'),
             'country' => $request->input('country'),
             'phone' => $request->input('phone'),
+            'email' => $request->input('email'),
             'is_online' => $request->input('is_online'),
         ]);
         

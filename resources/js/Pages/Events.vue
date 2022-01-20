@@ -2,7 +2,7 @@
     <app-layout title="Events">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Your events
+                Your Events
             </h2>
         </template>
         <div class="pt-12">
@@ -16,21 +16,41 @@
                 <input class="rounded-md" type="text" placeholder="Search by Title" v-model="searchTitle">
                 <input class="rounded-md" type="text" placeholder="Search by City" v-model="searchCity">
             </div>
-          
-            <ul>
-                <li v-for="event in events" :key="event.id" class="flex space-x-4 grid grid-cols-2">
-                    <div>
-                        Event Title: {{event.title}}
-                    </div>
-                    <div>
-                        Event City: {{event.city}}
-                    </div>
-                    <!-- need to fix photo problem -->
-                    <div>
-                        Event image: <img :src="event.photo_url">
-                    </div>
-                </li>
-            </ul>
+
+            <div class="grid grid-cols-5 gap-4">
+                <div class="col-span-3">
+                    <div id="map" height="300" width="150"></div>
+                </div>
+
+                <div class="col-span-2">
+                     <ul role="list" class="space-y-6 overflow-y-auto max-h-full">
+                        <li v-for="event in events" :key="event.id" class="col-span-1 bg-white rounded-lg shadow divide-y divide-gray-200">
+                            <div class="w-full flex items-center justify-between p-6 space-x-6">
+                                <div class="flex-1 space-y-2">
+                                    <h3 class="text-gray-900 text-xl font-medium capitalize">
+                                        {{ event.title }}
+                                    </h3>
+                                    <span class="flex-shrink-0 inline-block px-2 py-0.5 text-green-800 text-xs font-medium bg-green-100 rounded-full">
+                                        {{dateTime(event.start_date_time)}}
+                                    </span>
+                                    <div class="text-sm spacey-1">
+                                        <div class="text-gray-500 text-wrap">
+                                            {{event.description}}
+                                        </div>
+                                        <div v-if="event.is_online" class="capitalize text-cyan-700 font-semibold">
+                                            <span>Online Event</span>
+                                        </div>
+                                        <div v-if="event.building_number && event.street && event.postal_code && event.city && !event.is_online" class="capitalize text-cyan-700 font-semibold">
+                                            {{event.building_number}} {{event.street}}, {{event.postal_code}}, {{event.city}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <img class="w-10 h-10 bg-gray-300 rounded-full flex-shrink-0" :src="'storage/images/' + event.photo" alt="" />
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </app-layout>
 </template>
@@ -39,6 +59,7 @@
 import { defineComponent, ref } from 'vue';
 import JetButton from '@/Jetstream/Button.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
+import moment from 'moment';
 
 export default defineComponent({
     components: {
@@ -61,9 +82,15 @@ export default defineComponent({
             searchCity: ref(this.filters.searchCity),
         }
     },
+    created() {
+        console.log('vue is created');
+    },
     methods: {
         redirect() {
             this.$inertia.visit(route('events.create'), { method: 'get' });
+        },
+        dateTime(value) {
+            return moment(value).format("ddd, MMM Do YYYY, h:mm a");
         },
     },
     watch: {
@@ -81,7 +108,7 @@ export default defineComponent({
                 preserveState: true,
                 replace: true
             });
-        }
+        },
     }
 })
 </script>

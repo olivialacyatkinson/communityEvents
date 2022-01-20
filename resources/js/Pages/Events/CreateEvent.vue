@@ -10,8 +10,8 @@
 
             form to create event to store in db
 
-            <form @submit.prevent="submit" class="max-w-md mx-auto mt-7">
-                <div class="mt-6">
+            <form @submit.prevent="submit" class="max-w-md mx-auto mt-7 space-y-6">
+                <div>
                     <label for="title" class="block mb-2 uppercase font-bold text-xs text-gray-700">
                         Title
                     </label>
@@ -29,7 +29,7 @@
                         {{errors.title}}
                     </div>
                 </div>
-                <div class="mt-6">
+                <div>
                     <label for="title" class="block mb-2 uppercase font-bold text-xs text-gray-700">
                         Description
                     </label>
@@ -47,7 +47,7 @@
                         {{errors.description}}
                     </div>
                 </div>
-                <div class="mt-6">
+                <div>
                     <label for="title" class="block mb-2 uppercase font-bold text-xs text-gray-700">
                         Event Photo
                     </label>
@@ -56,64 +56,33 @@
                         @change="onFileSelected"
                         class="border border-gray-400 p-2 w-full"
                         type="file"
-                        name="photo_url"
-                        id="photo_url"
+                        name="photo"
+                        id="photo"
                     >
+
+                    <div v-if="errors.photo" class="text-red-500 text-xs mt-2">
+                        {{errors.photo}}
+                    </div>
                 </div>
-                <div class="mt-6">
+                <div>
                     <label for="title" class="block mb-2 uppercase font-bold text-xs text-gray-700">
                         Start Date
                     </label>
 
                     <input
-                        v-model="form.start_date"
+                        v-model="form.start_date_time"
                         class="border border-gray-400 p-2 w-full"
                         type="datetime-local"
-                        name="start_date"
-                        id="start_date"
+                        name="start_date_time"
+                        id="start_date_time"
                         
                     >
 
-                    <div v-if="errors.start_date" class="text-red-500 text-xs mt-2">
-                        {{errors.start_date}}
+                    <div v-if="errors.start_date_time" class="text-red-500 text-xs mt-2">
+                        {{errors.start_date_time}}
                     </div>
                 </div>
-                <div class="mt-6">
-                    <label for="title" class="block mb-2 uppercase font-bold text-xs text-gray-700">
-                        Start Time
-                    </label>
-
-                    <input
-                        v-model="form.start_time"
-                        class="border border-gray-400 p-2 w-full"
-                        type="datetime-local"
-                        name="start_time"
-                        id="start_time"
-                        
-                    >
-
-                    <div v-if="errors.start_time" class="text-red-500 text-xs mt-2">
-                        {{errors.start_time}}
-                    </div>
-                </div>
-
-                <!-- change back to text -->
-                <!-- <div class="mt-6">
-                    <label for="title" class="block mb-2 uppercase font-bold text-xs text-gray-700">
-                        Event Length
-                    </label>
-
-                    <input
-                        v-model="form.event_length"
-                        class="border border-gray-400 p-2 w-full"
-                        type="datetime-local"
-                        name="event_length"
-                        id="event_length"
-                    >
-                </div> -->
-
-
-                <div class="mt-6">
+                <div>
                     <label for="title" class="block mb-2 uppercase font-bold text-xs text-gray-700">
                         Building Number
                     </label>
@@ -126,20 +95,20 @@
                         id="building_number"
                     >
                 </div>
-                <div class="mt-6">
+                <div>
                     <label for="title" class="block mb-2 uppercase font-bold text-xs text-gray-700">
                         Street Name
                     </label>
 
                     <input
-                        v-model="form.building_street_name"
+                        v-model="form.street"
                         class="border border-gray-400 p-2 w-full"
                         type="text"
-                        name="building_street_name"
-                        id="building_street_name"
+                        name="street"
+                        id="street"
                     >
                 </div>
-                <div class="mt-6">
+                <div>
                     <label for="title" class="block mb-2 uppercase font-bold text-xs text-gray-700">
                         Building Name
                     </label>
@@ -152,7 +121,7 @@
                         id="building_name"
                     >
                 </div>
-                <div class="mt-6">
+                <div>
                     <label for="title" class="block mb-2 uppercase font-bold text-xs text-gray-700">
                         PostCode
                     </label>
@@ -165,7 +134,7 @@
                         id="postal_code"
                     >
                 </div>
-                <div class="mt-6">
+                <div>
                     <label for="title" class="block mb-2 uppercase font-bold text-xs text-gray-700">
                         City
                     </label>
@@ -178,7 +147,7 @@
                         id="city"
                     >
                 </div>
-                <div class="mt-6">
+                <div>
                     <label for="title" class="block mb-2 uppercase font-bold text-xs text-gray-700">
                         County
                     </label>
@@ -191,7 +160,7 @@
                         id="county"
                     >
                 </div>
-                <div class="mt-6">
+                <div>
                     <label for="title" class="block mb-2 uppercase font-bold text-xs text-gray-700">
                         Country
                     </label>
@@ -204,7 +173,7 @@
                         id="country"
                     >
                 </div>
-                <div class="mt-6">
+                <div>
                     <label for="title" class="block mb-2 uppercase font-bold text-xs text-gray-700">
                         Phone Number
                     </label>
@@ -217,7 +186,24 @@
                         id="phone"
                     >
                 </div>
-                <div class="mt-6">
+                <div>
+                    <label for="title" class="block mb-2 uppercase font-bold text-xs text-gray-700">
+                        Email
+                    </label>
+
+                    <input
+                        v-model="form.email"
+                        class="border border-gray-400 p-2 w-full"
+                        type="text"
+                        name="email"
+                        id="email"
+                    >
+
+                    <div v-if="errors.email" class="text-red-500 text-xs mt-2">
+                        {{errors.email}}
+                    </div>
+                </div>
+                <div>
                     <label for="title" class="block mb-2 uppercase font-bold text-xs text-gray-700">
                         Online Event
                     </label>
@@ -232,7 +218,7 @@
                     >
                 </div>
 
-                <div class="mt-6">
+                <div>
                     <button type="submit" class="bg-gray-800 text-white rounded py-2 px-4 hover:bg-gray-500">
                        Submit
                     </button>
@@ -262,29 +248,37 @@
                 form: useForm({
                     title: '',
                     description: '',
-                    photo_url: null,
-                    start_date: '',
-                    start_time: '',
+                    photo: null,
+                    start_date_time: '',
                     building_number: null,
-                    building_street_name: '',
+                    street: '',
                     building_name: '',
                     postal_code: '',
                     city: '',
                     county: '',
                     country: '',
                     phone: null,
+                    email: '',
                     is_online: false,
-
                 }),
             }
         },
+        // mounted() {
+        //     var autocomplete = new google.maps.places.Autocomplete(
+        //     document.getElementById("autocomplete"),
+        //     );
+
+        //     autocomplete.setComponentRestrictions({ // restrict the country
+        //         country: ["uk"]
+        //     });
+        // },
         methods: {
             submit() {
                 this.form.post('/events')
             },
             onFileSelected(e) {
                 console.log(e.target.files[0]);
-                this.form.photo_url = e.target.files[0]; 
+                this.form.photo = e.target.files[0]; 
             },
         }
     })

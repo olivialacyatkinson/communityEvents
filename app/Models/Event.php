@@ -17,17 +17,17 @@ class Event extends Model
     protected $fillable = [
         'title',
         'description',
-        'photo_url',
-        'start_date',
-        'start_time',
+        'photo',
+        'start_date_time',
         'building_number',
-        'building_street_name',
+        'street',
         'building_name',
         'postal_code',
         'city',
         'county',
         'country',
         'phone',
+        'email',
         'is_online'
     ];
 }
