@@ -7,7 +7,6 @@
         </template>
 
         <div class="pt-12">
-        <!-- dashboard page content-->
             <div class="flex justify-end pb-12">
                 <jet-button type="button" @click="redirect()">
                     Create Event
@@ -17,18 +16,20 @@
             <ul role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 <li v-for="event in events.data" :key="event.id" class="col-span-1 flex flex-col bg-white rounded-lg shadow divide-y divide-gray-200">
                     <div class="flex-1 flex flex-col p-8">
-                        <img class="w-32 h-32 flex-shrink-0 mx-auto rounded-full" :src="'storage/images/' + event.photo" alt="" />
-                        <h3 class="mt-6 text-gray-900 text-xl font-semibold capitalize">{{ event.title }}</h3>
+                        <Link :href="route('events.show', event.id)">
+                            <img class="w-32 h-32 flex-shrink-0 mx-auto rounded-full" :src="'storage/images/' + event.photo" alt="" />
+                            <h3 class="mt-6 text-gray-900 text-xl font-semibold capitalize">{{ event.title }}</h3>
 
-                        <dl class="mt-1 flex-grow flex flex-col justify-between">
-                            <dd class="text-gray-500 text-sm">
-                                <p class="text-cyan-700">{{dateTime(event.start_date_time)}}</p>
-                                <p class="text-gray-400 pt-2">{{ event.description }}</p>
-                            </dd>
-                            <dd>
-                                {{event.building_number}} {{event.street}}, {{event.postal_code}}, {{event.city}} 
-                            </dd>
-                        </dl>
+                            <dl class="mt-1 flex-grow flex flex-col justify-between">
+                                <dd class="text-gray-500 text-sm">
+                                    <p class="text-cyan-700">{{dateTime(event.start_date_time)}}</p>
+                                    <p class="text-gray-400 pt-2">{{ event.description }}</p>
+                                </dd>
+                                <dd>
+                                    {{event.building_number}} {{event.street}}, {{event.postal_code}}, {{event.city}} 
+                                </dd>
+                            </dl>
+                        </Link>
                     </div>
                     <div>
                         <div class="-mt-px flex divide-x divide-gray-200">

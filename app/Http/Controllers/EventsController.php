@@ -29,6 +29,13 @@ class EventsController extends Controller
         ]);
     }
 
+    public function show(Event $event)
+    {
+        return Inertia::render('EventInformation', [
+            'event' => $event
+        ]);
+    }
+
     public function create()
     {
         return Inertia::render('Events/CreateEvent');

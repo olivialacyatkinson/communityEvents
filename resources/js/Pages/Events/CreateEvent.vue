@@ -1,15 +1,11 @@
 <template>
     <app-layout title="Create an Event">
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            <h2 class="font-semibold text-xl text-cyan-700 leading-tight">
                 Create a new Event
             </h2>
         </template>
         <div>
-            this is the events page
-
-            form to create event to store in db
-
             <form @submit.prevent="submit" class="max-w-md mx-auto mt-7 space-y-6">
                 <div>
                     <label for="title" class="block mb-2 uppercase font-bold text-xs text-gray-700">

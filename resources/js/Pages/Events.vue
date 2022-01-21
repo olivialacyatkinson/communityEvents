@@ -5,6 +5,7 @@
                 Your Events
             </h2>
         </template>
+
         <div class="pt-12">
             <div class="flex justify-end">
                 <jet-button type="button" @click="redirect()">
@@ -25,28 +26,30 @@
                 <div class="col-span-2">
                      <ul role="list" class="space-y-6 overflow-y-auto max-h-full">
                         <li v-for="event in events" :key="event.id" class="col-span-1 bg-white rounded-lg shadow divide-y divide-gray-200">
-                            <div class="w-full flex items-center justify-between p-6 space-x-6">
-                                <div class="flex-1 space-y-2">
-                                    <h3 class="text-gray-900 text-xl font-medium capitalize">
-                                        {{ event.title }}
-                                    </h3>
-                                    <span class="flex-shrink-0 inline-block px-2 py-0.5 text-green-800 text-xs font-medium bg-green-100 rounded-full">
-                                        {{dateTime(event.start_date_time)}}
-                                    </span>
-                                    <div class="text-sm spacey-1">
-                                        <div class="text-gray-500 text-wrap">
-                                            {{event.description}}
-                                        </div>
-                                        <div v-if="event.is_online" class="capitalize text-cyan-700 font-semibold">
-                                            <span>Online Event</span>
-                                        </div>
-                                        <div v-if="event.building_number && event.street && event.postal_code && event.city && !event.is_online" class="capitalize text-cyan-700 font-semibold">
-                                            {{event.building_number}} {{event.street}}, {{event.postal_code}}, {{event.city}}
+                            <Link :href="route('events.show', event.id)">
+                                <div class="w-full flex items-center justify-between p-6 space-x-6">
+                                    <div class="flex-1 space-y-2">
+                                        <h3 class="text-gray-900 text-xl font-medium capitalize">
+                                            {{ event.title }}
+                                        </h3>
+                                        <span class="flex-shrink-0 inline-block px-2 py-0.5 text-green-800 text-xs font-medium bg-green-100 rounded-full">
+                                            {{dateTime(event.start_date_time)}}
+                                        </span>
+                                        <div class="text-sm spacey-1">
+                                            <div class="text-gray-500 text-wrap">
+                                                {{event.description}}
+                                            </div>
+                                            <div v-if="event.is_online" class="capitalize text-cyan-700 font-semibold">
+                                                <span>Online Event</span>
+                                            </div>
+                                            <div v-if="event.building_number && event.street && event.postal_code && event.city && !event.is_online" class="capitalize text-cyan-700 font-semibold">
+                                                {{event.building_number}} {{event.street}}, {{event.postal_code}}, {{event.city}}
+                                            </div>
                                         </div>
                                     </div>
+                                    <img class="w-10 h-10 bg-gray-300 rounded-full flex-shrink-0" :src="'storage/images/' + event.photo" alt="" />
                                 </div>
-                                <img class="w-10 h-10 bg-gray-300 rounded-full flex-shrink-0" :src="'storage/images/' + event.photo" alt="" />
-                            </div>
+                            </Link>
                         </li>
                     </ul>
                 </div>
@@ -59,12 +62,14 @@
 import { defineComponent, ref } from 'vue';
 import JetButton from '@/Jetstream/Button.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
+import {Link}  from '@inertiajs/inertia-vue3';
 import moment from 'moment';
 
 export default defineComponent({
     components: {
         JetButton,
         AppLayout,
+        Link,
     },
     props: {
         events: {
