@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\User;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 
@@ -78,6 +79,7 @@ class EventsController extends Controller
             'phone' => $request->input('phone'),
             'email' => $request->input('email'),
             'is_online' => $request->input('is_online'),
+            'user_id' => $request->user()->id,
         ]);
         
         return redirect('/events');
@@ -125,6 +127,7 @@ class EventsController extends Controller
             'phone' => $request->input('phone'),
             'email' => $request->input('email'),
             'is_online' => $request->input('is_online'),
+            'user_id' => $request->user()->id,
         ]);
         
         return redirect('/dashboard');

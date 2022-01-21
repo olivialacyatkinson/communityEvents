@@ -6,7 +6,7 @@
             </h2>
         </template>
 
-        <div class="pt-12">
+        <div class="mt-12 mx-6">
             <div class="flex justify-end pb-12">
                 <jet-button type="button" @click="redirect()">
                     Create Event
@@ -23,9 +23,8 @@
                             <dl class="mt-1 flex-grow flex flex-col justify-between">
                                 <dd class="text-gray-500 text-sm">
                                     <p class="text-cyan-700">{{dateTime(event.start_date_time)}}</p>
-                                    <p class="text-gray-400 pt-2">{{ event.description }}</p>
                                 </dd>
-                                <dd>
+                                <dd v-if="event.building_number && event.street && event.postal_code && event.city && !event.is_online">
                                     {{event.building_number}} {{event.street}}, {{event.postal_code}}, {{event.city}} 
                                 </dd>
                             </dl>
@@ -80,7 +79,7 @@ export default defineComponent({
     },
     methods: {
         redirect() {
-            this.$inertia.visit(route('events.create'), { method: 'get' });
+            this.$inertia.get(route('events.create'), { method: 'get' });
         },
         dateTime(value) {
             return moment(value).format("ddd, MMM Do YYYY, h:mm a");

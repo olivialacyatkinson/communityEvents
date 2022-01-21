@@ -30,7 +30,6 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard', [
         'events' => Event::paginate(12)->through(fn($event) => [
-            //passing in only selective data
             'id' => $event->id,
             'title' => $event->title,
             'photo' => $event->photo,
@@ -50,4 +49,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/events/create', [EventsCo
 Route::middleware(['auth:sanctum', 'verified'])->get('/events/{event}/edit', [EventsController::class, 'edit'] )->name('events.edit');
 Route::middleware(['auth:sanctum', 'verified'])->put('/events/{event}', [EventsController::class, 'update'] )->name('events.update');
 Route::middleware(['auth:sanctum', 'verified'])->get('/events/{event}', [EventsController::class, 'destroy'] )->name('events.destroy');
-Route::middleware(['auth:sanctum', 'verified'])->get('/eventInformation/{event}', [EventsController::class, 'show'] )->name('events.show');
+Route::middleware(['auth:sanctum', 'verified'])->get('/event/{event}', [EventsController::class, 'show'] )->name('events.show');

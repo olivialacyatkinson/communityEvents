@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Event;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Carbon\Carbon;
 
@@ -26,6 +27,7 @@ class EventFactory extends Factory
         $days = rand(1, 354);
 
         return [
+            'user_id' => User::factory(),
             'title' => $this->faker->word,
             'description' => $this->faker->sentence,
             'start_date_time' => Carbon::now()->subDays($days),

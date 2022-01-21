@@ -28,6 +28,13 @@ class Event extends Model
         'country',
         'phone',
         'email',
-        'is_online'
+        'is_online',
+        'user_id',
     ];
+
+    // a event model belongs to user
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

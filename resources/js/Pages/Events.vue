@@ -6,24 +6,33 @@
             </h2>
         </template>
 
-        <div class="pt-12">
+        <div class="mt-12 mx-6">
             <div class="flex justify-end">
                 <jet-button type="button" @click="redirect()">
                     Create Event
                 </jet-button>
             </div>
-            
-            <div class="space-x-4 my-12">
-                <input class="rounded-md" type="text" placeholder="Search by Title" v-model="searchTitle">
+
+            <div class="my-12 flex-wrap">
+                <input class="rounded-md mr-4 mb-4" type="text" placeholder="Search by Title" v-model="searchTitle">
                 <input class="rounded-md" type="text" placeholder="Search by City" v-model="searchCity">
             </div>
 
-            <div class="grid grid-cols-5 gap-4">
-                <div class="col-span-3">
-                    <div id="map" height="300" width="150"></div>
+            <div class="grid grid-cols-1 sm:grid-cols-5 gap-4">
+                <div class="sm:col-span-3">
+                    <!-- <div id="map" height="300" width="150">
+
+                    </div> -->
+
+                    <GMapMap
+                        :center="{ lat: 55.3781, lng: 3.4360 }"
+                        :zoom="12"
+                        map-type-id="terrain"
+                        style="width:100%;  height: 400px;"
+                    ></GMapMap>
                 </div>
 
-                <div class="col-span-2">
+                <div class="mt-8 sm:mx-0 sm:col-span-2">
                      <ul role="list" class="space-y-6 overflow-y-auto max-h-full">
                         <li v-for="event in events" :key="event.id" class="col-span-1 bg-white rounded-lg shadow divide-y divide-gray-200">
                             <Link :href="route('events.show', event.id)">
@@ -89,6 +98,7 @@ export default defineComponent({
     },
     created() {
         console.log('vue is created');
+        // this.initMap();
     },
     methods: {
         redirect() {
@@ -97,6 +107,13 @@ export default defineComponent({
         dateTime(value) {
             return moment(value).format("ddd, MMM Do YYYY, h:mm a");
         },
+        // initMap() {
+        //     this.map = new google.maps.Map(document.getElementById("map"), {
+        //         center: { lat: 55.3781, lng: 3.4360 },
+        //         zoom: 8,
+        //     });
+        //     console.log('map method called')
+        // }
     },
     watch: {
         searchTitle: function(value) {

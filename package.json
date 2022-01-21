@@ -26,8 +26,12 @@
         "vue-loader": "^16.1.2"
     },
     "dependencies": {
+        "@fawmi/vue-google-maps": "^0.9.4",
+        "@googlemaps/js-api-loader": "^1.13.2",
         "doctrine-dbal": "^0.1.2",
+        "gmap-vue": "^2.0.2",
         "locutus": "^2.0.15",
-        "moment": "^2.29.1"
+        "moment": "^2.29.1",
+        "vue2-google-maps": "^0.10.7"
     }
 }

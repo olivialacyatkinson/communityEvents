@@ -10,7 +10,7 @@
             <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none xl:order-last">
                 <article>
                     <div>
-                        <img class="h-32 w-full object-cover lg:h-48" :src="'storage/images/' + event.photo" alt="" />
+                        <img class="h-32 w-full object-cover lg:h-48" :src="'/storage/images/' + event.photo" alt="" />
                     </div>
 
                     <div class="mt-12">

@@ -14,21 +14,12 @@
 
         <!-- Scripts -->
         @routes
+        
+
         <script src="{{ mix('js/app.js') }}" defer></script>
         <script src="{{ mix('js/manifest.js') }}" defer></script>
         <script src="{{ mix('js/vendor.js') }}" defer></script>
-        <script>
-            let map;
-
-            function initMap() {
-                map = new google.maps.Map(document.getElementById("map"), {
-                    center: { lat: -34.397, lng: 150.644 },
-                    zoom: 8,
-                });
-                console.log('map method called')
-            }
-        </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_API')}}&callback=initMap" defer></script>
+        <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_API')}}"></script> -->
     </head>
     <body class="font-sans antialiased">
         @inertia
