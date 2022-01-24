@@ -7692,7 +7692,7 @@ var appName = ((_window$document$getE = window.document.getElementsByTagName('ti
       }
     }).use(plugin, _fawmi_vue_google_maps__WEBPACK_IMPORTED_MODULE_3__["default"], {
       load: {
-        key: 'AIzaSyBMzMoPW0GeqzVwtoe7TEpmkqVxRykBSLM'
+        key: ''
       }
     }).mixin({
       methods: {
