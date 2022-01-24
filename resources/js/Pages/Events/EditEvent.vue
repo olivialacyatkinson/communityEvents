@@ -272,7 +272,7 @@ export default defineComponent({
             })
         },
         onFileSelected(e) {
-            console.log(e.target.files[0]);
+            // console.log(e.target.files[0]);
             this.form.photo = e.target.files[0]; 
         },
     }

@@ -58,7 +58,7 @@ class EventsController extends Controller
             'county' => ['nullable'],
             'country' => ['nullable'],
             'phone' => ['nullable'],
-            'email'=> ['required'],
+            'email' => ['required'],
             'is_online' => [],
         ]);
 

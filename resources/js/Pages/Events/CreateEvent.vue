@@ -127,7 +127,7 @@
                         class="border border-gray-400 p-2 w-full"
                         type="text"
                         name="postal_code"
-                        id="postal_code"
+                        id="postcode"
                     >
                 </div>
                 <div>
@@ -257,17 +257,32 @@
                     email: '',
                     is_online: false,
                 }),
+                lat: null,
+                lng: null,
             }
         },
-        // mounted() {
-        //     var autocomplete = new google.maps.places.Autocomplete(
-        //     document.getElementById("autocomplete"),
-        //     );
+        mounted() {
+            var autocomplete = new google.maps.places.Autocomplete(
+                document.getElementById("autocomplete"),
+            );
 
-        //     autocomplete.setComponentRestrictions({ // restrict the country
-        //         country: ["uk"]
-        //     });
-        // },
+            autocomplete.setComponentRestrictions({
+                // restrict the country
+                country: ["uk"],
+            });
+
+            autocomplete.addListener("place_changed", () => {
+                let getPlace = autocomplete.getPlace();
+
+                console.log(getPlace.address_components);
+                console.log(getPlace.geometry);
+
+                this.lat = getPlace.geometry.location.lat()
+                this.lng = getPlace.geometry.location.lng()
+
+                console.log(this.lat + ' ' + this.lng)
+            });
+        },
         methods: {
             submit() {
                 this.form.post('/events')

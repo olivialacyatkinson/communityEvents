@@ -19,7 +19,7 @@
         <script src="{{ mix('js/app.js') }}" defer></script>
         <script src="{{ mix('js/manifest.js') }}" defer></script>
         <script src="{{ mix('js/vendor.js') }}" defer></script>
-        <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_API')}}"></script> -->
+        <script async src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_API')}}&libraries=places&callback=initMap"></script>
     </head>
     <body class="font-sans antialiased">
         @inertia

@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\EventsController;
-use App\Http\Controllers\GoogleController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;

@@ -20,16 +20,7 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-5 gap-4">
                 <div class="sm:col-span-3">
-                    <!-- <div id="map" height="300" width="150">
-
-                    </div> -->
-
-                    <GMapMap
-                        :center="{ lat: 55.3781, lng: 3.4360 }"
-                        :zoom="12"
-                        map-type-id="terrain"
-                        style="width:100%;  height: 400px;"
-                    ></GMapMap>
+                    <div id="map" style="height: 400px; width: 550px"></div>
                 </div>
 
                 <div class="mt-8 sm:mx-0 sm:col-span-2">
@@ -94,11 +85,12 @@ export default defineComponent({
         return {
             searchTitle: ref(this.filters.searchTitle),
             searchCity: ref(this.filters.searchCity),
+            map: null,
         }
     },
-    created() {
-        console.log('vue is created');
-        // this.initMap();
+    mounted() {
+        // console.log('vue is created');
+        this.initMap();
     },
     methods: {
         redirect() {
@@ -107,13 +99,13 @@ export default defineComponent({
         dateTime(value) {
             return moment(value).format("ddd, MMM Do YYYY, h:mm a");
         },
-        // initMap() {
-        //     this.map = new google.maps.Map(document.getElementById("map"), {
-        //         center: { lat: 55.3781, lng: 3.4360 },
-        //         zoom: 8,
-        //     });
-        //     console.log('map method called')
-        // }
+        initMap() {
+            this.map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: 51.5072, lng: 0.1276 },
+                zoom: 8,
+            });
+            // console.log('map method called')
+        }
     },
     watch: {
         searchTitle: function(value) {

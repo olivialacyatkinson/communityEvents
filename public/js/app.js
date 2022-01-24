@@ -1534,11 +1534,13 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       searchTitle: (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(this.filters.searchTitle),
-      searchCity: (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(this.filters.searchCity)
+      searchCity: (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(this.filters.searchCity),
+      map: null
     };
   },
-  created: function created() {
-    console.log('vue is created'); // this.initMap();
+  mounted: function mounted() {
+    // console.log('vue is created');
+    this.initMap();
   },
   methods: {
     redirect: function redirect() {
@@ -1548,14 +1550,16 @@ __webpack_require__.r(__webpack_exports__);
     },
     dateTime: function dateTime(value) {
       return moment__WEBPACK_IMPORTED_MODULE_4___default()(value).format("ddd, MMM Do YYYY, h:mm a");
-    } // initMap() {
-    //     this.map = new google.maps.Map(document.getElementById("map"), {
-    //         center: { lat: 55.3781, lng: 3.4360 },
-    //         zoom: 8,
-    //     });
-    //     console.log('map method called')
-    // }
-
+    },
+    initMap: function initMap() {
+      this.map = new google.maps.Map(document.getElementById("map"), {
+        center: {
+          lat: 51.5072,
+          lng: 0.1276
+        },
+        zoom: 8
+      }); // console.log('map method called')
+    }
   },
   watch: {
     searchTitle: function searchTitle(value) {
@@ -1625,17 +1629,28 @@ __webpack_require__.r(__webpack_exports__);
         phone: null,
         email: '',
         is_online: false
-      })
+      }),
+      lat: null,
+      lng: null
     };
   },
-  // mounted() {
-  //     var autocomplete = new google.maps.places.Autocomplete(
-  //     document.getElementById("autocomplete"),
-  //     );
-  //     autocomplete.setComponentRestrictions({ // restrict the country
-  //         country: ["uk"]
-  //     });
-  // },
+  mounted: function mounted() {
+    var _this = this;
+
+    var autocomplete = new google.maps.places.Autocomplete(document.getElementById("autocomplete"));
+    autocomplete.setComponentRestrictions({
+      // restrict the country
+      country: ["uk"]
+    });
+    autocomplete.addListener("place_changed", function () {
+      var getPlace = autocomplete.getPlace();
+      console.log(getPlace.address_components);
+      console.log(getPlace.geometry);
+      _this.lat = getPlace.geometry.location.lat();
+      _this.lng = getPlace.geometry.location.lng();
+      console.log(_this.lat + ' ' + _this.lng);
+    });
+  },
   methods: {
     submit: function submit() {
       this.form.post('/events');
@@ -1707,7 +1722,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     onFileSelected: function onFileSelected(e) {
-      console.log(e.target.files[0]);
+      // console.log(e.target.files[0]);
       this.form.photo = e.target.files[0];
     }
   }
@@ -5583,9 +5598,19 @@ var _hoisted_5 = {
 var _hoisted_6 = {
   "class": "grid grid-cols-1 sm:grid-cols-5 gap-4"
 };
-var _hoisted_7 = {
+
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "sm:col-span-3"
-};
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  id: "map",
+  style: {
+    "height": "400px",
+    "width": "550px"
+  }
+})], -1
+/* HOISTED */
+);
+
 var _hoisted_8 = {
   "class": "mt-8 sm:mx-0 sm:col-span-2"
 };
@@ -5629,8 +5654,6 @@ var _hoisted_20 = ["src"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_jet_button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("jet-button");
 
-  var _component_GMapMap = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("GMapMap");
-
   var _component_Link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Link");
 
   var _component_app_layout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("app-layout");
@@ -5672,20 +5695,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         })
       }, null, 512
       /* NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.searchCity]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div id=\"map\" height=\"300\" width=\"150\">\r\n\r\n                    </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GMapMap, {
-        center: {
-          lat: 55.3781,
-          lng: 3.4360
-        },
-        zoom: 12,
-        "map-type-id": "terrain",
-        style: {
-          "width": "100%",
-          "height": "400px"
-        }
-      }, null, 8
-      /* PROPS */
-      , ["center"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_9, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.events, function (event) {
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.searchCity]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_9, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.events, function (event) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
           key: event.id,
           "class": "col-span-1 bg-white rounded-lg shadow divide-y divide-gray-200"
@@ -5977,7 +5987,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "border border-gray-400 p-2 w-full",
         type: "text",
         name: "postal_code",
-        id: "postal_code"
+        id: "postcode"
       }, null, 512
       /* NEED_PATCH */
       ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.form.postal_code]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
@@ -7664,11 +7674,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
 /* harmony import */ var _inertiajs_progress__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/progress */ "./node_modules/@inertiajs/progress/dist/index.js");
-/* harmony import */ var _fawmi_vue_google_maps__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fawmi/vue-google-maps */ "./node_modules/@fawmi/vue-google-maps/src/main.js");
 var _window$document$getE;
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
-
 
 
 
@@ -7690,11 +7698,7 @@ var appName = ((_window$document$getE = window.document.getElementsByTagName('ti
       render: function render() {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.h)(app, props);
       }
-    }).use(plugin, _fawmi_vue_google_maps__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      load: {
-        key: ''
-      }
-    }).mixin({
+    }).use(plugin).mixin({
       methods: {
         route: route
       }
